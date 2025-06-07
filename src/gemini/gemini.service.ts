@@ -62,10 +62,10 @@ export class GeminiService {
 
         try {
           await this.sendEmail(name, collectedEmail, phone, notes);
-          return userFacingConfirmationFromGemini;
+          return `${userFacingConfirmationFromGemini} Is there anything else I can help you with, ${name}?`;
         } catch (apiError: any) {
           console.error('Error sending email via Nodemailer:', apiError);
-          return `Great, I have your information: Name: ${name}, Email: ${collectedEmail}, Phone: ${phone}. Our team has been notified and will reach out to you soon. Thanks!`;
+          return `Great, I have your information: Name: ${name}, Email: ${collectedEmail}, Phone: ${phone}. Our team has been notified and will reach out to you soon. Thanks! Is there anything else I can help you with, ${name}?`;
         }
       }
 
@@ -96,6 +96,7 @@ export class GeminiService {
     const mailOptions = {
       from: this.gmailUser,
       to: 'lfaderon@gmail.com',
+      cc: 'muc@paenergy.ph',
       subject: 'PA Energy AI Assistant - Lead Alert',
       text: `A new lead has been captured by the PA Energy AI Assistant:\n\nDate: ${new Date().toLocaleString()}\nName: ${name}\nEmail: ${collectedEmail}\nPhone: ${phone}\nNotes: ${notes || "N/A"}\n\nPlease follow up with this lead.\nThe client's email for direct reply is: ${collectedEmail}.`,
       replyTo: collectedEmail,
