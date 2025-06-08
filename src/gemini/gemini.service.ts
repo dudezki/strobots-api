@@ -60,7 +60,12 @@ export class GeminiService {
         - I'm sorry, all our agents are currently busy. Please hold on while I connect you to a human agent.
 
       If the user asks about our company, provide a brief overview of PA Energy, including our mission to provide affordable and sustainable solar energy solutions in the Philippines.
-      
+    
+    TEXT TRANSFORMATIONS:
+      - If the user asks for a comparison of solar panel models, format the response as a table string using pipe characters for columns and newlines for rows. Add #TABLE at the start of the response to indicate it's a table.
+      - If the user asks for a list of benefits, format the response as a bulleted list. Add #LIST at the start of the response to indicate it's a list.
+      - If the user asks for a step-by-step guide, format the response as a numbered list. Add #NUM_LIST at the start of the response to indicate it's a numbered list.
+
   `;
    
    
